@@ -48,17 +48,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setEmailLink();
-    window.setTimeout(hideLoader, 700);
+    window.setTimeout(hideLoader, 450);
 
     if (!video) {
         return;
     }
 
-    video.addEventListener("loadeddata", revealVideo, { once: true });
+    video.addEventListener("canplay", revealVideo, { once: true });
     video.addEventListener("error", hideLoader, { once: true });
 
-    if (video.readyState >= 2) {
+    video.load();
+
+    if (video.readyState >= 3) {
         revealVideo();
     }
 });
-

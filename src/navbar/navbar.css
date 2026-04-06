@@ -115,6 +115,9 @@ nav ul li a:active {
     margin-right: 40px;
     cursor: pointer;
     display: none;
+    width: 44px;
+    text-align: center;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 #check {
@@ -141,50 +144,138 @@ nav ul li a:active {
 }
 
 @media (max-width: 858px) {
-    .checkbtn {
-        display: block;
-        /*margin-top: 6%;*/
+    nav {
+        height: 74px;
     }
 
-    ul {
+    .checkbtn {
+        display: block;
+        position: relative;
+        z-index: 12;
+        float: right;
+        width: 40px;
+        height: 40px;
+        margin-right: 14px;
+        margin-top: 17px;
+        line-height: 40px;
+        background: transparent;
+        border: 0;
+        opacity: 0.96;
+    }
+
+    .checkbtn i {
+        font-size: 1.1rem;
+        line-height: 40px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    nav ul {
         position: fixed;
         width: 100%;
         height: 100vh;
-        top: 80px;
-        left: -100%;
-        top: 80px;
-        transition: all .5s;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .28s ease, visibility .28s ease;
         text-align: center;
-        background-color: rgba(30, 30, 30, 0.98);
-        z-index: 2;
+        background: rgba(9, 9, 9, 0.985);
+        z-index: 11;
+        padding: 0 1.5rem;
+        backdrop-filter: blur(10px);
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    nav ul::before {
+        content: "";
+        display: block;
+        width: 42px;
+        height: 1px;
+        margin-bottom: 1.3rem;
+        background: rgba(255, 255, 255, 0.18);
     }
 
     nav ul li {
         display: block;
-        margin: 50px 0;
-        line-height: 30px;
+        margin: 0;
+        line-height: 1.2;
+        width: 100%;
     }
 
     nav ul li a {
-        font-size: 20px;
+        display: block;
+        font-size: 1.45rem;
+        padding: 0.85rem 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        letter-spacing: 0.08rem;
+        text-transform: uppercase;
+        transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     a:hover,
     a.active {
         background: none;
-        color: #0082e6;
+        color: white;
     }
 
     #check:checked~ul {
-        left: 0;
-
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .logo {
         font-size: 20px;
-        /* Nuevo tamaño para dispositivos con un ancho máximo de 858px */
-        letter-spacing: 0.5rem;
-        /* Nuevo espaciado */
+        letter-spacing: 0.12rem;
+    }
+
+    label.logo {
+        padding: 0 16px;
+        font-size: 18px;
+        line-height: 74px;
+        position: relative;
+        z-index: 12;
+    }
+
+    nav ul li a::after {
+        left: 50%;
+        right: auto;
+        bottom: 8px;
+        width: 26px;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        transform: scaleX(0);
+        transform-origin: center;
+        opacity: 0;
+        margin-left: -13px;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+        width: 26px;
+        transform: scaleX(1);
+        opacity: 1;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+        transform: translateY(-1px);
+        background: transparent;
+    }
+
+    #check:checked + .checkbtn {
+        transform: rotate(0deg);
+    }
+
+    #check:checked + .checkbtn i {
+        transform: rotate(90deg) scale(0.96);
     }
 
 }
