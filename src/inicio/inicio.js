@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
             image.decoding = 'async';
         }
 
+        if (image) {
+            setMediaLoadingState(card, image);
+        }
+
         card.addEventListener('click', function(event) {
             toggleOverlay(this, event);
         });
@@ -23,6 +27,26 @@ document.addEventListener('DOMContentLoaded', function() {
         card.setAttribute('tabindex', '0');
     });
 });
+
+function setMediaLoadingState(container, media) {
+    if (!container || !media) {
+        return;
+    }
+
+    container.classList.add('is-loading');
+
+    function clearLoadingState() {
+        container.classList.remove('is-loading');
+    }
+
+    if (media.complete) {
+        clearLoadingState();
+        return;
+    }
+
+    media.addEventListener('load', clearLoadingState, { once: true });
+    media.addEventListener('error', clearLoadingState, { once: true });
+}
 
 function toggleOverlay(card, event) {
     const overlay = card.querySelector('.card-overlay');

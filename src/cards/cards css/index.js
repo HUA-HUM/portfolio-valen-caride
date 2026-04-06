@@ -7,13 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuCheckbox = document.getElementById('check');
 
     iframes.forEach(function(iframe) {
+        const videoContainer = iframe.closest('.video-container');
+
         iframe.setAttribute('loading', 'lazy');
         iframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'strict-origin-when-cross-origin');
+
+        if (videoContainer) {
+            setMediaLoadingState(videoContainer, iframe, 'iframe');
+        }
     });
 
     galleryImages.forEach(function(image) {
+        const imageContainer = image.parentElement;
+
         image.setAttribute('loading', 'lazy');
         image.setAttribute('decoding', 'async');
+
+        if (imageContainer) {
+            setMediaLoadingState(imageContainer, image, 'image');
+        }
     });
 
     if (scrollToTopButton) {
@@ -46,3 +58,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function setMediaLoadingState(container, media, type) {
+    if (!container || !media) {
+        return;
+    }
+
+    container.classList.add('is-loading');
+
+    function clearLoadingState() {
+        container.classList.remove('is-loading');
+    }
+
+    if (type === 'image' && media.complete) {
+        clearLoadingState();
+        return;
+    }
+
+    media.addEventListener('load', clearLoadingState, { once: true });
+    media.addEventListener('error', clearLoadingState, { once: true });
+
+    window.setTimeout(clearLoadingState, 5000);
+}
