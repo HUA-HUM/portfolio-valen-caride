@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="/src/Contact Us/index.css">
     <link rel="stylesheet" href="/src/navbar/navbar.css">
-    <script src="/src/navbar/navbar.js"></script>
+    <script src="/src/navbar/navbar.js" defer></script>
 </head>
 
 <body>
@@ -28,39 +28,19 @@
     </nav>
     <div class="container">
         <div class="icon">
-            <a href="https://www.instagram.com/valencaride/" target="_blank">
+            <a href="https://www.instagram.com/valencaride/" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-instagram instagram-icon"></i>
             </a>
         </div>
         <div class="icon">
-            <a href="https://api.whatsapp.com/send?phone=541136090308" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=541136090308" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-whatsapp whatsapp-icon"></i>
             </a>
         </div>
         <div class="icon">
-            <!-- <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Valenfcaride@gmail.com target="_blank">
-                <i class="fas fa-envelope gmail-icon"></i>
-            </a> -->
             <a id="emailLink">
                 <i class="fas fa-envelope gmail-icon"></i>
             </a>
-            
-              <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                  var emailLink = document.getElementById("emailLink");
-            
-                  function isMobileDevice() {
-                    return /Mobi|Android/i.test(navigator.userAgent);
-                  }
-            
-                  if (isMobileDevice()) {
-                    emailLink.href = "mailto:Valenfcaride@gmail.com";
-                  } else {
-                    emailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=Valenfcaride@gmail.com";
-                    emailLink.target = "_blank";
-                  }
-                });
-              </script>
         </div>
     </div>
 </body>

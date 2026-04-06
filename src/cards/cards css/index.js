@@ -1,58 +1,48 @@
 
-
-window.onload = function () {
-	var descripcion = document.getElementById("descripcion");
-	var textoCompleto = descripcion.innerText;
-	descripcion.setAttribute("data-texto-completo", textoCompleto);
-	descripcion.innerText = textoCompleto.substring(0, textoCompleto.length / 2) + "...";
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Seleccionar la flecha de desplazamiento
     const scrollToTopButton = document.getElementById('scrollToTop');
     const imagesSection = document.querySelector('.container.mb-2');
+    const iframes = document.querySelectorAll('iframe');
+    const galleryImages = document.querySelectorAll('.container.mb-2 img');
+    const menuCheckbox = document.getElementById('check');
 
-    // Agregar un event listener para el evento 'click'
-    scrollToTopButton.addEventListener('click', function() {
-        // Verificar si estamos en la parte superior o inferior de la página
-        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-            // Desplazarse suavemente al inicio de la página
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        } else {
-            // Desplazarse suavemente a la sección de imágenes
-            imagesSection.scrollIntoView({ behavior: 'smooth' });
-        }
+    iframes.forEach(function(iframe) {
+        iframe.setAttribute('loading', 'lazy');
+        iframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'strict-origin-when-cross-origin');
     });
 
-    // Agregar un event listener para detectar el desplazamiento de la página
-    window.addEventListener('scroll', function() {
-        // Obtener la posición actual de desplazamiento vertical
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-        // Cambiar la apariencia de la flecha dependiendo de la posición del desplazamiento
-        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-            scrollToTopButton.classList.add('upwards');
-        } else {
-            scrollToTopButton.classList.remove('upwards');
-        }
+    galleryImages.forEach(function(image) {
+        image.setAttribute('loading', 'lazy');
+        image.setAttribute('decoding', 'async');
     });
+
+    if (scrollToTopButton) {
+        scrollToTopButton.addEventListener('click', function() {
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+
+            if (imagesSection) {
+                imagesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5) {
+                scrollToTopButton.classList.add('upwards');
+            } else {
+                scrollToTopButton.classList.remove('upwards');
+            }
+        }, { passive: true });
+    }
+
+    if (menuCheckbox && scrollToTopButton) {
+        menuCheckbox.addEventListener('change', function() {
+            scrollToTopButton.style.display = this.checked ? 'none' : 'flex';
+        });
+    }
 });
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const menuCheckbox = document.getElementById('check'); // Obtener el checkbox del menú
-    const scrollToTop = document.getElementById('scrollToTop'); // Obtener el botón de la flecha
-
-    // Agregar evento de cambio al checkbox del menú
-    menuCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            scrollToTop.style.display = 'none'; // Ocultar la flecha cuando el menú está desplegado
-        } else {
-            scrollToTop.style.display = 'block'; // Mostrar la flecha cuando el menú se cierra
-        }
-    });
-});
-

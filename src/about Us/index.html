@@ -9,7 +9,7 @@
   <link rel="icon" href="/images/VC-Photoroom.png-Photoroom.png" type="image/x-icon">
   <link rel="stylesheet" href="/src/about Us/style.css" />
   <link rel="stylesheet" href="/src/navbar/navbar.css">
-  <script src="/src/navbar/navbar.js"></script>
+  <script src="/src/navbar/navbar.js" defer></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="body">
@@ -28,14 +28,13 @@
       <li><a href="/src/Contact Us/index.html">Contact</a></li>
     </ul>
   </nav>
-  <div class="container mt-5">
-    <div class="row">
-        <!-- Columna izquierda con la imagen -->
-        <div class="col-md-4 d-flex justify-content-center">
-            <img src="https://i.pinimg.com/736x/0c/2c/af/0c2caf0aacc3c074a3c6ed56232bfbd9.jpg" alt="Mi Imagen" class="img-fluid  small-img">
+  <div class="container about-shell">
+    <div class="row about-row">
+        <div class="col-md-4 d-flex justify-content-center about-media">
+            <img src="https://i.pinimg.com/736x/0c/2c/af/0c2caf0aacc3c074a3c6ed56232bfbd9.jpg" alt="Valen Caride portrait" class="img-fluid small-img" loading="lazy" decoding="async">
         </div>
-        <!-- Columna derecha con el About -->
-        <div class="col-md-8">
+        <div class="col-md-8 about-copy">
+            <p class="about-kicker">Director & Filmmaker</p>
             <h2 class="about-title">About Me</h2>
             <p class="about-text">
                 Young director and filmmaker born in Buenos Aires, Argentina.

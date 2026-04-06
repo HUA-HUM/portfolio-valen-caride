@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="theme-color" content="#151616">
     <link rel="canonical" href="https://www.valencaride.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <meta name="description" content="Director Freelancer">
     
@@ -24,30 +27,31 @@
     
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/main.css">
+    <script src="/index.js" defer></script>
 </head>
 <body>
     <div class="loader-container" id="loader">
         <div class="loader"></div>
     </div> 
-    <main id="principal" class="loaded">
+    <main id="principal">
         <div class="intro">
             <h1>VALEN CARIDE</h1>
             <p> Director & Filmmaker</p>
             <a href="/src/inicio/inicio.html">EXPLORE</a>
         </div>
-        <video autoplay muted loop playsinline id="backgroundVideo"  style="display: none;">
+        <video autoplay muted loop playsinline preload="metadata" id="backgroundVideo" aria-hidden="true">
             <source src="/video/fondo.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main> 
     <div class="footer-icons">
       <div class="icon">
-          <a href="https://www.instagram.com/valencaride/" target="_blank">
+          <a href="https://www.instagram.com/valencaride/" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-instagram instagram-icon"></i>
           </a>
       </div>
       <div class="icon">
-          <a href="https://api.whatsapp.com/send?phone=541136090308" target="_blank">
+          <a href="https://api.whatsapp.com/send?phone=541136090308" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-whatsapp whatsapp-icon"></i>
           </a>
       </div>
@@ -55,25 +59,7 @@
           <a id="emailLink">
               <i class="fas fa-envelope gmail-icon"></i>
           </a>
-          
-            <script>
-              document.addEventListener("DOMContentLoaded", function() {
-                var emailLink = document.getElementById("emailLink");
-          
-                function isMobileDevice() {
-                  return /Mobi|Android/i.test(navigator.userAgent);
-                }
-          
-                if (isMobileDevice()) {
-                  emailLink.href = "mailto:Valenfcaride@gmail.com";
-                } else {
-                  emailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=Valenfcaride@gmail.com";
-                  emailLink.target = "_blank";
-                }
-              });
-            </script>
       </div>
-    </div>
     </div>
     <script type="application/ld+json">
         {
@@ -96,16 +82,4 @@
         }
     </script>        
 </body>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var loader = document.getElementById('loader');
-    var video = document.getElementById('backgroundVideo');
-
-    video.oncanplay = function() {
-        loader.style.display = 'none'; // Ocultar el loader cuando el video esté listo para reproducirse
-        video.style.display = 'block'; // Mostrar el video cuando esté listo
-        video.play(); // Iniciar la reproducción del video
-    };
-});
-</script>
 </html>

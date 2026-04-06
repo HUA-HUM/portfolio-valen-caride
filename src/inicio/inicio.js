@@ -1,19 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.card');
 
-    cards.forEach(card => {
+    cards.forEach((card, index) => {
+        const image = card.querySelector('img');
+
+        if (image && index > 2) {
+            image.loading = 'lazy';
+            image.decoding = 'async';
+        }
+
         card.addEventListener('click', function(event) {
             toggleOverlay(this, event);
         });
+
+        card.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleOverlay(this, event);
+            }
+        });
+
+        card.setAttribute('tabindex', '0');
     });
 });
 
 function toggleOverlay(card, event) {
     const overlay = card.querySelector('.card-overlay');
-    const title = card.querySelector('.card-overlay h2');
-
-    // Verificar si el título está visible
-    const titleVisible = title && window.getComputedStyle(title).getPropertyValue("opacity") === "1";
+    const titleVisible = window.getComputedStyle(overlay).getPropertyValue("opacity") === "1";
 
     if (!titleVisible) {
         // Mostrar el título

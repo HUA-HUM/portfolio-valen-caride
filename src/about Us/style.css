@@ -7,41 +7,99 @@
 }
 
 .body {
-  background-color: #000;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 28rem),
+    linear-gradient(180deg, #070707 0%, #000 100%);
+  min-height: 100vh;
 }
+
+.about-shell {
+  margin-top: 3rem;
+  padding-inline: 1rem;
+}
+
+.about-row {
+  align-items: center;
+  padding: clamp(1.75rem, 4vw, 3.5rem) 0;
+  gap: 0;
+}
+
 .small-img {
-  width: 250px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  width: min(100%, 320px);
   height: auto;
+  border-radius: 2px;
+  display: block;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
 }
+
+.about-media {
+  padding-bottom: 1.5rem;
+}
+
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 42rem;
+  padding-left: clamp(1rem, 3vw, 2.8rem);
+}
+
+.about-kicker {
+  font-size: 0.82rem;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+}
+
 .about-text {
-  font-size: 1.25rem;
-  margin-top: 2%; /* Ajusta el tamaño del texto según tus preferencias */
+  font-size: clamp(1.06rem, 1.4vw, 1.22rem);
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.9;
+  max-width: 36rem;
+  margin-bottom: 0;
 }
 .about-title {
-  margin-bottom: 1rem; /* Espacio inferior del título */
+  margin-bottom: 0.15rem;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  letter-spacing: 0.04rem;
+  line-height: 1.02;
 }
+
 @media (max-width: 768px) {
   .small-img {
-    width: 150px; /* Tamaño más pequeño para la imagen en móviles */
+    width: min(100%, 210px);
   }
- img{
-  margin-top: -10px;
- }
+
   .about-text {
-    text-align: center; /* Centrar el texto en móviles */
-    margin-top: 15px; /* Ajustar el margen superior del texto */
+    text-align: center;
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
   .about-title {
-    margin-top: 10px;
-    text-align: center; /* Centrar el título en móviles */
+    text-align: center;
   }
 
-  .d-flex {
-    justify-content: center; /* Centrar la imagen en móviles */
+  .about-kicker {
+    text-align: center;
   }
 
-  .container {
-    padding: 15px; /* Asegurarse de que el contenido tenga un poco de padding en dispositivos móviles */
+  .about-shell {
+    padding-inline: 1rem;
+  }
+
+  .about-row {
+    padding: 1.6rem 0 2rem;
+  }
+
+  .about-copy {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    align-items: center;
+    gap: 0.55rem;
   }
 }

@@ -1,39 +1,64 @@
 
-// var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-// var video = document.getElementById('backgroundVideo');
+document.addEventListener("DOMContentLoaded", function () {
+    var loader = document.getElementById("loader");
+    var principal = document.getElementById("principal");
+    var video = document.getElementById("backgroundVideo");
+    var emailLink = document.getElementById("emailLink");
 
-// // Función para iniciar la reproducción del video
-// function startVideo() {
-//     video.play().then(function() {
-//         // Video iniciado
-//         console.log('Video started playing');
-//     }).catch(function(error) {
-//         // Error al iniciar la reproducción del video
-//         console.error('Video playback error:', error);
-//     });
-// }
+    function hideLoader() {
+        if (loader) {
+            loader.classList.add("is-hidden");
+        }
 
-// // Si es iOS, espera a que el usuario interactúe con la página para iniciar el video
-// if (isiOS) {
-//     document.body.addEventListener('touchstart', function() {
-//         startVideo();
-//     }, { once: true }); // Solo se activará una vez
-// } else {
-//     // En otros dispositivos, inicia el video automáticamente
-//     startVideo();
-// }
-//-----------------------------------------------------------------
-// Espera 5 segundos antes de mostrar el video
-setTimeout(function() {
-    var loader = document.getElementById('loader');
-    var principal = document.getElementById('principal');
-    loader.style.display = 'none';
-    principal.classList.add('loaded');
-}, 3000);
+        if (principal) {
+            principal.classList.add("is-ready");
+        }
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    var video = document.getElementById('backgroundVideo');
-    video.play();
+    function setEmailLink() {
+        if (!emailLink) {
+            return;
+        }
+
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            emailLink.href = "mailto:Valenfcaride@gmail.com";
+            return;
+        }
+
+        emailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=Valenfcaride@gmail.com";
+        emailLink.target = "_blank";
+        emailLink.rel = "noopener noreferrer";
+    }
+
+    function revealVideo() {
+        if (principal) {
+            principal.classList.add("video-ready");
+        }
+
+        if (!video) {
+            return;
+        }
+
+        var playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+                // Some browsers still block autoplay even when muted.
+            });
+        }
+    }
+
+    setEmailLink();
+    window.setTimeout(hideLoader, 700);
+
+    if (!video) {
+        return;
+    }
+
+    video.addEventListener("loadeddata", revealVideo, { once: true });
+    video.addEventListener("error", hideLoader, { once: true });
+
+    if (video.readyState >= 2) {
+        revealVideo();
+    }
 });
-
 

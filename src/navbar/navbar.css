@@ -14,6 +14,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --nav-bg: rgba(21, 22, 22, 0.94);
+    --nav-border: rgba(255, 255, 255, 0.08);
+}
+
 .active {
     cursor: default;
     /* Quita el cursor */
@@ -30,9 +35,14 @@ body {
     font-family: "Lato", sans-serif;
 }
 nav {
-    background: #151616;
+    background: var(--nav-bg);
     height: 80px;
     width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--nav-border);
+    backdrop-filter: blur(12px);
 }
 label.logo {
     color: white;
@@ -59,6 +69,7 @@ nav ul li a {
     font-size: 17px;
     padding: 7px 13px;
     border-radius: 3px;
+    position: relative;
 }
 
 a.active,
@@ -71,6 +82,24 @@ nav ul li a.active {
     background-color: transparent;
     color: white;
     text-decoration: none;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    bottom: 2px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    transform: scaleX(1);
 }
 nav ul li a:active {
     color: #999; /* Cambia el color del texto cuando se hace clic en el enlace */
@@ -126,7 +155,7 @@ nav ul li a:active {
         top: 80px;
         transition: all .5s;
         text-align: center;
-        background-color: #1e1e1e;
+        background-color: rgba(30, 30, 30, 0.98);
         z-index: 2;
     }
 

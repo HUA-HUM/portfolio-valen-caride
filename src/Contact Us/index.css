@@ -1,33 +1,58 @@
 body {
-  background-color: #000000;
-  
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 28rem),
+    linear-gradient(180deg, #070707 0%, #000 100%);
+  min-height: 100vh;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh; /* Puedes ajustar esto según tus necesidades */
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  gap: 1rem;
+  height: calc(100vh - 80px);
+  width: 100%;
+  padding-inline: 1rem;
 }
 
 .icon {
-  margin: 0 20px;
+  margin: 0;
   color: #fff;
   font-size: 40px;
-  transition: color 0.3s; /* Transición suave en el cambio de color */
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  width: 5.75rem;
+  height: 5.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
 }
 
 .icon:hover {
-  color: #ffcc00; /* Ejemplo de color al pasar el ratón */
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
 }
-i :active{
-  color: #443e3e;
+
+.icon a,
+.icon i {
+  color: #fff;
+}
+
+.icon i {
+  transition: opacity 0.25s ease;
+}
+
+.icon:hover i {
+  opacity: 0.88;
 }
 
 @media (max-width: 768px) {
   .container {
       flex-direction: column;
-      margin: 1%;
+      gap: 0.9rem;
+      height: calc(100vh - 80px);
   }
-} 
+}
